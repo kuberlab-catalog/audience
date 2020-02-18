@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: audience-ui
+spec:
+  template:
+    metadata:
+      labels:
+        app: audience
+        component: audience-ui
+    spec:
+      containers:
+        - name:  audience-ui
+          image: "{{ printf "%s:%s" .Values.ui.Image.Name .Values.ui.Image.Tag}}"
+          readinessProbe:
+            httpGet:
+              path: /probe
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          ports:
+            - containerPort: 80
+              name: http

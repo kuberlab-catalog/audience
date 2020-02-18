@@ -17,8 +17,12 @@ spec:
   - host: {{ $dns }}
     http:
       paths:
-        - path: /
+        - path: /api
           backend:
             serviceName: audience-api
+            servicePort: 8082
+        - path: /
+          backend:
+            serviceName: audience-ui
             servicePort: 80
     {{- end }}
