@@ -14,7 +14,7 @@ spec:
           image: "{{ printf "%s:%s" .Values.ui.Image.Name .Values.ui.Image.Tag}}"
           readinessProbe:
             httpGet:
-              path: /probe
+              path: /
               port: 80
             initialDelaySeconds: 30
             periodSeconds: 10
