@@ -4,7 +4,7 @@ metadata:
   labels:
     app: audience
     component: audience-ui
-  name: audience-api
+  name: audience-ui
 spec:
   ports:
     - name: http
