@@ -17,10 +17,14 @@ spec:
   - host: {{ $dns }}
     http:
       paths:
+        - path: /swagger
+          backend:
+            serviceName: audience-api
+            servicePort: 8088
         - path: /api
           backend:
             serviceName: audience-api
-            servicePort: 8082
+            servicePort: 8088
         - path: /
           backend:
             serviceName: audience-ui
