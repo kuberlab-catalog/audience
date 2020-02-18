@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: audience-db
+spec:
+  template:
+    metadata:
+      labels:
+        app: audience
+        component: audience-db
+    spec:
+      containers:
+        - name:  audience-db
+          image: postgres:9.6.2
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.api.db.user }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.api.db.password }}
+          ports:
+            - containerPort: 5432
+              name: psql
+          volumeMounts:
+            - name: db
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: audience-db

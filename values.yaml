@@ -1,0 +1,21 @@
+api:
+  Image:
+    Name: kuberlab/audience
+    Tag: latest
+  db:
+    user: postgres
+    password: postgres
+  dns:
+    - audience.kibernetika.io
+  auth_key: random-auth-key
+  base_url: https://audience.kibernetika.io
+
+ui:
+  Image:
+    Name: kuberlab/audience-ui
+    Tag: latest
+
+persistence:
+  db:
+    storageClass: nfs
+    size: 5G

@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: audience-api
+spec:
+  template:
+    metadata:
+      labels:
+        app: audience
+        component: audience-api
+    spec:
+      containers:
+        - name:  audience-api
+          image: "{{ printf "%s:%s" .Values.api.Image.Name .Values.api.Image.Tag}}"
+          readinessProbe:
+            httpGet:
+              path: /probe
+              port: 8088
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: PG_HOST
+              value: audience-db
+            - name: PG_USER
+              value: {{ .Values.api.db.user }}
+            - name: PG_PWD
+              value: {{ .Values.api.db.password }}
+            - name: BASE_URL
+              value: {{ .Values.api.base_url }}
+            {{- if .Values.api.auth_key }}
+            - name: AUTH_KEY
+              value: {{ .Values.api.auth_key }}
+            {{- end }}
+          ports:
+            - containerPort: 8088
+              name: http
