@@ -46,6 +46,10 @@ spec:
             - name: DEALER_DISABLE_HTTPS
               value: {{ .Values.api.dealer.disableHttps }}
             {{- end }}
+            {{- if .Values.api.dealer.organization }}
+            - name: ORGANIZATION_NAME
+              value: {{ .Values.api.dealer.organization }}
+            {{- end }}
             {{- if .Values.api.dealer.accessToken }}
             - name: ACCESS_TOKEN
               value: {{ .Values.api.dealer.accessToken }}
