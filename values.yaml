@@ -7,8 +7,14 @@ api:
     password: postgres
   dns:
     - audience.kibernetika.io
-  auth_key: random-auth-key
-  base_url: https://audience.kibernetika.io
+  authKey: random-auth-key
+  baseUrl: https://audience.kibernetika.io
+  dealer:
+    host: dev.kibernetika.io
+    apiPath: /api/v0.2
+    organization: org-name
+    readAccessToken: r
+    writeAccessToken: w
 
 ui:
   Image:
