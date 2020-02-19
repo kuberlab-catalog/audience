@@ -30,7 +30,7 @@ spec:
               value: {{ .Values.api.db.password }}
             - name: BASE_URL
               value: {{ .Values.api.baseUrl }}
-            {{- if .Values.api.auth_key }}
+            {{- if .Values.api.authKey }}
             - name: AUTH_KEY
               value: {{ .Values.api.authKey }}
             {{- end }}
