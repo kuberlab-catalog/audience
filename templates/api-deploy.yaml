@@ -50,13 +50,13 @@ spec:
             - name: ORGANIZATION_NAME
               value: {{ .Values.api.dealer.organization }}
             {{- end }}
-            {{- if .Values.api.dealer.accessToken }}
+            {{- if .Values.api.dealer.readAccessToken }}
             - name: ACCESS_TOKEN
-              value: {{ .Values.api.dealer.accessToken }}
+              value: {{ .Values.api.dealer.readAccessToken }}
             {{- end }}
-            {{- if .Values.api.dealer.manageToken }}
+            {{- if .Values.api.dealer.writeAccessToken }}
             - name: MANAGE_TOKEN
-              value: {{ .Values.api.dealer.manageToken }}
+              value: {{ .Values.api.dealer.writeAccessToken }}
             {{- end }}
           ports:
             - containerPort: 8088
