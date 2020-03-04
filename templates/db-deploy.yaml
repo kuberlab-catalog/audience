@@ -23,7 +23,7 @@ spec:
             - containerPort: 5432
               name: psql
           volumeMounts:
-            - name: data
+            - name: db
               mountPath: /var/lib/postgresql/data/pgdata
               subPath: audience-db
       volumes:
