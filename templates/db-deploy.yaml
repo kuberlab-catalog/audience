@@ -17,12 +17,15 @@ spec:
               value: {{ .Values.api.db.user }}
             - name: POSTGRES_PASSWORD
               value: {{ .Values.api.db.password }}
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
               name: psql
           volumeMounts:
-            - name: db
-              mountPath: /var/lib/postgresql/data
+            - name: data
+              mountPath: /var/lib/postgresql/data/pgdata
+              subPath: audience-db
       volumes:
         - name: db
           persistentVolumeClaim:
