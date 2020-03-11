@@ -24,3 +24,12 @@ spec:
           ports:
             - containerPort: 80
               name: http
+          volumeMounts:
+            - name: images
+              mountPath: /usr/share/nginx/html/images
+              readOnly: true
+      volumes:
+        - name: images
+          persistentVolumeClaim:
+            claimName: audience-images
+            readOnly: true
