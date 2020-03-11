@@ -46,18 +46,14 @@ spec:
             - name: DEALER_DISABLE_HTTPS
               value: {{ .Values.api.dealer.disableHttps }}
             {{- end }}
-            {{- if .Values.api.dealer.organization }}
-            - name: ORGANIZATION_NAME
-              value: {{ .Values.api.dealer.organization }}
-            {{- end }}
-            {{- if .Values.api.dealer.readAccessToken }}
-            - name: ACCESS_TOKEN
-              value: {{ .Values.api.dealer.readAccessToken }}
-            {{- end }}
-            {{- if .Values.api.dealer.writeAccessToken }}
-            - name: MANAGE_TOKEN
-              value: {{ .Values.api.dealer.writeAccessToken }}
-            {{- end }}
           ports:
             - containerPort: 8088
               name: http
+          volumeMounts:
+            - name: db
+              mountPath: /images
+              subPath: audience-images
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: audience-images
