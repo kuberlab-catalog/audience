@@ -27,6 +27,7 @@ spec:
           volumeMounts:
             - name: images
               mountPath: /usr/share/nginx/html/images
+              subPath: audience-images
               readOnly: true
       volumes:
         - name: images
