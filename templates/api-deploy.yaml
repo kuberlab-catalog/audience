@@ -50,10 +50,9 @@ spec:
             - containerPort: 8088
               name: http
           volumeMounts:
-            - name: db
+            - name: images
               mountPath: /images
-              subPath: audience-images
       volumes:
-        - name: db
+        - name: images
           persistentVolumeClaim:
             claimName: audience-images
