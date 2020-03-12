@@ -46,6 +46,22 @@ spec:
             - name: DEALER_DISABLE_HTTPS
               value: {{ .Values.api.dealer.disableHttps }}
             {{- end }}
+            {{- if .Values.api.dealer.inferenceWorkspace }}
+            - name: INFERENCE_WORKSPACE
+              value: {{ .Values.api.dealer.inferenceWorkspace }}
+            {{- end }}
+            {{- if .Values.api.dealer.inferenceName }}
+            - name: INFERENCE_NAME
+              value: {{ .Values.api.dealer.inferenceName }}
+            {{- end }}
+            {{- if .Values.api.dealer.inferenceVersion }}
+            - name: INFERENCE_VERSION
+              value: {{ .Values.api.dealer.inferenceVersion }}
+            {{- end }}
+            {{- if .Values.api.dealer.inferenceToken }}
+            - name: INFERENCE_TOKEN
+              value: {{ .Values.api.dealer.inferenceToken }}
+            {{- end }}
           ports:
             - containerPort: 8088
               name: http

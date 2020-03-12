@@ -12,6 +12,10 @@ api:
   dealer:
     host: dev.kibernetika.io
     apiPath: /api/v0.2
+    inferenceWorkspace: infws
+    inferenceName: infname
+    inferenceVersion: infversion
+    inferenceToken: inftoken
 
 ui:
   Image:
