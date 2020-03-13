@@ -25,6 +25,10 @@ spec:
           backend:
             serviceName: audience-api
             servicePort: 8088
+        - path: /images
+          backend:
+            serviceName: audience-api
+            servicePort: 8088
         - path: /
           backend:
             serviceName: audience-ui
