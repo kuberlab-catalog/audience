@@ -58,10 +58,6 @@ spec:
             - name: INFERENCE_VERSION
               value: {{ .Values.api.dealer.inferenceVersion }}
             {{- end }}
-            {{- if .Values.api.dealer.inferenceToken }}
-            - name: INFERENCE_TOKEN
-              value: {{ .Values.api.dealer.inferenceToken }}
-            {{- end }}
           ports:
             - containerPort: 8088
               name: http
