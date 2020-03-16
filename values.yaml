@@ -15,6 +15,11 @@ api:
     inferenceWorkspace: infws
     inferenceName: infname
     inferenceVersion: infversion
+    storageEndpoint: https://storage.googleapis.com
+    storageId: XXX
+    storageSecret: YYY
+    storageRegion: us-west-2
+    storageBucket: kibernetika-audience
 
 ui:
   Image:

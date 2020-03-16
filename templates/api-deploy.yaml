@@ -58,6 +58,26 @@ spec:
             - name: INFERENCE_VERSION
               value: {{ .Values.api.dealer.inferenceVersion }}
             {{- end }}
+            {{- if .Values.api.dealer.storageEndpoint }}
+            - name: STORAGE_ENDPOINT
+              value: {{ .Values.api.dealer.storageEndpoint }}
+            {{- end }}
+            {{- if .Values.api.dealer.storageId }}
+            - name: STORAGE_ID
+              value: {{ .Values.api.dealer.storageId }}
+            {{- end }}
+            {{- if .Values.api.dealer.storageSecret }}
+            - name: STORAGE_SECRET
+              value: {{ .Values.api.dealer.storageSecret }}
+            {{- end }}
+            {{- if .Values.api.dealer.storageRegion }}
+            - name: STORAGE_REGION
+              value: {{ .Values.api.dealer.storageRegion }}
+            {{- end }}
+            {{- if .Values.api.dealer.storageBucket }}
+            - name: STORAGE_BUCKET
+              value: {{ .Values.api.dealer.storageBucket }}
+            {{- end }}
           ports:
             - containerPort: 8088
               name: http
