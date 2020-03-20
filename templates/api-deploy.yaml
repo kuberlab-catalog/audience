@@ -58,6 +58,14 @@ spec:
             - name: INFERENCE_VERSION
               value: {{ .Values.api.dealer.inferenceVersion }}
             {{- end }}
+            {{- if .Values.api.dealer.servingWorkspace }}
+            - name: SERVING_WORKSPACE
+              value: {{ .Values.api.dealer.servingWorkspace }}
+            {{- end }}
+            {{- if .Values.api.dealer.servingName }}
+            - name: SERVING_NAME
+              value: {{ .Values.api.dealer.servingName }}
+            {{- end }}
             {{- if .Values.api.dealer.storageEndpoint }}
             - name: STORAGE_ENDPOINT
               value: {{ .Values.api.dealer.storageEndpoint }}
