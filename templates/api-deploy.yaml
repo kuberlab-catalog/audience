@@ -66,6 +66,10 @@ spec:
             - name: SERVING_NAME
               value: {{ .Values.api.dealer.servingName }}
             {{- end }}
+            {{- if .Values.api.dealer.servingToken }}
+            - name: SERVING_TOKEN
+              value: {{ .Values.api.dealer.servingToken }}
+            {{- end }}
             {{- if .Values.api.dealer.storageEndpoint }}
             - name: STORAGE_ENDPOINT
               value: {{ .Values.api.dealer.storageEndpoint }}

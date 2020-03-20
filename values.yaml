@@ -17,6 +17,7 @@ api:
     inferenceVersion: infversion
     servingWorkspace: srvws
     servingName: srvname
+    servingToken: ZZZ
     storageEndpoint: https://storage.googleapis.com
     storageId: XXX
     storageSecret: YYY
