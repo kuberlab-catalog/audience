@@ -36,7 +36,7 @@ spec:
             {{- end }}
             {{- if .Values.api.authAllowPublic }}
             - name: AUTH_ALLOW_PUBLIC
-              value: {{ .Values.api.authAllowPublic }}
+              value: "{{ .Values.api.authAllowPublic }}"
             {{- end }}
             {{- if .Values.api.dealer.host }}
             - name: DEALER_HOST
