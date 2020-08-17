@@ -11,6 +11,7 @@ api:
   authAllowPublic: false
   baseUrl: https://audience.kibernetika.io
   dealer:
+    enabled: false
     host: dev.kibernetika.io
     apiPath: /api/v0.2
     inferenceWorkspace: infws
