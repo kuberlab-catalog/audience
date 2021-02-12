@@ -105,7 +105,7 @@ spec:
             - name: images
               mountPath: /images
               subPath: audience-images
-            - name: upload
+            - name: api-upload
               mountPath: /upload
               subPath: audience-api-upload
       volumes:
