@@ -105,7 +105,13 @@ spec:
             - name: images
               mountPath: /images
               subPath: audience-images
+            - name: upload
+              mountPath: /upload
+              subPath: audience-api-upload
       volumes:
         - name: images
           persistentVolumeClaim:
             claimName: audience-images
+        - name: api-upload
+          persistentVolumeClaim:
+            claimName: audience-api-upload

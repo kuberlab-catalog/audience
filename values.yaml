@@ -32,6 +32,9 @@ ui:
     Tag: latest
 
 persistence:
+  apiUpload:
+    storageClass: nfs
+    size: 10G
   db:
     storageClass: nfs
     size: 5G

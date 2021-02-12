@@ -5,6 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     certmanager.k8s.io/cluster-issuer: kibernetika-cert-issuer
+    nginx.ingress.kubernetes.io/proxy-body-size: 16m
 spec:
   tls:
     - hosts:
