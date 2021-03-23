@@ -1,4 +1,8 @@
+{{- if gt Capabilities.KubeVersion.Minor 13 }}
+apiVersion: apps/v1
+{{- else }}
 apiVersion: extensions/v1beta1
+{{- end }}
 kind: Deployment
 metadata:
   name: audience-api
@@ -9,6 +13,41 @@ spec:
         app: audience
         component: audience-api
     spec:
+      {{- if .Values.openness.enabled }}
+      serviceAccountName: heatmap-producer
+      initContainers:
+      - name: certrequester
+        image: certrequester:1.0
+        args: [ "--cfg", "/home/certrequester/config/certrequest.json" ]
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: "0.1"
+          limits:
+            cpu: "0.1"
+            memory: "128Mi"
+        volumeMounts:
+          - name: config
+            mountPath: /home/certrequester/config/
+          - name: certs
+            mountPath: /home/certrequester/certs/
+        - name: alpine
+          image: alpine:3.12.0
+          command: [ "/bin/sh" ]
+          args: [ "-c", "cp /root/ca-certrequester/cert.pem /root/certs/root.pem" ]
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "0.1"
+            limits:
+              cpu: "0.1"
+              memory: "128Mi"
+          volumeMounts:
+            - name: ca-certrequester
+              mountPath: /root/ca-certrequester
+            - name: certs
+              mountPath: /root/certs
+      {{- end }}
       containers:
         - name:  audience-api
           image: "{{ printf "%s:%s" .Values.api.Image.Name .Values.api.Image.Tag}}"
@@ -30,6 +69,10 @@ spec:
               value: {{ .Values.api.db.password }}
             - name: BASE_URL
               value: {{ .Values.api.baseUrl }}
+            {{- if .Values.openness.enabled }}
+            - name: OPENNESS_ENABLED
+              value: "true"
+            {{- end }}
             {{- if .Values.api.authKey }}
             - name: AUTH_KEY
               value: {{ .Values.api.authKey }}
@@ -108,6 +151,10 @@ spec:
             - name: api-upload
               mountPath: /upload
               subPath: audience-api-upload
+            {{- if .Values.openness.enabled }}
+            - name: certs
+              mountPath: /root/certs/
+            {{- end }}
       volumes:
         - name: images
           persistentVolumeClaim:
@@ -115,3 +162,13 @@ spec:
         - name: api-upload
           persistentVolumeClaim:
             claimName: audience-api-upload
+        {{- if .Values.openness.enabled }}
+        - name: certs
+          emptyDir: {}
+        - name: ca-certrequester
+          secret:
+            secretName: ca-certrequester
+        - name: config
+          configMap:
+            name: heatmap-producer-csr-config
+        {{- end }}

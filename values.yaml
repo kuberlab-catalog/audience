@@ -41,3 +41,6 @@ persistence:
   images:
     storageClass: nfs
     size: 5G
+
+openness:
+  enabled: false
