@@ -1,4 +1,7 @@
 api:
+  service:
+    type: ClusterIP
+    nodePort: 32208
   Image:
     Name: kuberlab/audience
     Tag: latest
