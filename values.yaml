@@ -45,5 +45,9 @@ persistence:
     storageClass: nfs
     size: 5G
 
+ingress:
+  tls:
+    enabled: true
+
 openness:
   enabled: false
