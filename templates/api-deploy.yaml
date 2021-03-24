@@ -174,5 +174,5 @@ spec:
             secretName: ca-certrequester
         - name: config
           configMap:
-            name: heatmap-producer-csr-config
+            name: heatmap-consumer-csr-config
         {{- end }}
