@@ -1,4 +1,4 @@
-{{- if gt Capabilities.KubeVersion.Minor 13 }}
+{{- if ne .Capabilities.KubeVersion.Minor "13" }}
 apiVersion: apps/v1
 {{- else }}
 apiVersion: extensions/v1beta1
@@ -7,6 +7,10 @@ kind: Deployment
 metadata:
   name: audience-ui
 spec:
+  selector:
+    matchLabels:
+      app: audience
+      component: audience-ui
   template:
     metadata:
       labels:
