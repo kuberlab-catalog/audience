@@ -28,6 +28,7 @@ api:
     storageSecret: YYY
     storageRegion: us-west-2
     storageBucket: kibernetika-audience
+    storeVideoFiles: true
 
 ui:
   Image:
@@ -38,6 +39,9 @@ persistence:
   apiUpload:
     storageClass: nfs
     size: 10G
+  apiVideo:
+    storageClass: nfs
+    size: 30G
   db:
     storageClass: nfs
     size: 5G

@@ -145,6 +145,8 @@ spec:
             - name: STORAGE_BUCKET
               value: {{ .Values.api.dealer.storageBucket }}
             {{- end }}
+            - name: STORE_VIDEO_FILES
+              value: {{ .Values.api.storeVideoFiles }}
           ports:
             - containerPort: 8088
               name: http
@@ -155,6 +157,9 @@ spec:
             - name: api-upload
               mountPath: /upload
               subPath: audience-api-upload
+            - name: api-video
+              mountPath: /videos
+              subPath: audience-api-video
             {{- if .Values.openness.enabled }}
             - name: certs
               mountPath: /root/certs/
@@ -166,6 +171,9 @@ spec:
         - name: api-upload
           persistentVolumeClaim:
             claimName: audience-api-upload
+        - name: api-video
+          persistentVolumeClaim:
+            claimName: audience-api-video
         {{- if .Values.openness.enabled }}
         - name: certs
           emptyDir: {}

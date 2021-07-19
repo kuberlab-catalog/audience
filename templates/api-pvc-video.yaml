@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: audience-api-video
+spec:
+  {{- if .Values.persistence.apiVideo.storageClass }}
+  storageClassName: {{ .Values.persistence.apiVideo.storageClass | quote }}
+  {{- end }}
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: {{ .Values.persistence.apiVideo.size }}
