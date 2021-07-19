@@ -28,7 +28,7 @@ api:
     storageSecret: YYY
     storageRegion: us-west-2
     storageBucket: kibernetika-audience
-  storeVideoFiles: true
+  storeVideoFiles: "true"
 
 ui:
   Image:
