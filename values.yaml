@@ -29,6 +29,7 @@ api:
     storageRegion: us-west-2
     storageBucket: kibernetika-audience
   storeVideoFiles: "true"
+  servingRegisterToken: XXX
 
 ui:
   Image:

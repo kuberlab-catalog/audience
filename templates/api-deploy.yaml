@@ -75,6 +75,10 @@ spec:
               value: {{ .Values.api.baseUrl }}
             - name: STORE_VIDEO_FILES
               value: {{ .Values.api.storeVideoFiles | quote }}
+            {{- if .Values.api.servingRegisterToken }}
+            - name: SERVING_REGISTER_TOKEN
+              value: {{ .Values.api.servingRegisterToken }}
+            {{- end }}
             {{- if .Values.openness.enabled }}
             - name: OPENNESS_ENABLED
               value: "true"
