@@ -36,6 +36,11 @@ ui:
     Name: kuberlab/audience-ui
     Tag: latest
 
+render:
+  Image:
+    Name: kuberlab/audience-render
+    Tag: latest
+
 persistence:
   apiUpload:
     storageClass: nfs

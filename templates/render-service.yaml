@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: audience
+    component: audience-render
+  name: audience-render
+spec:
+  ports:
+    - name: http
+      port: 8765
+      protocol: TCP
+      targetPort: 8765
+  selector:
+    app: audience
+    component: audience-render

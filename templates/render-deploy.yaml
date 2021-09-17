@@ -1,0 +1,34 @@
+{{- if ne .Capabilities.KubeVersion.Minor "13" }}
+apiVersion: apps/v1
+{{- else }}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Deployment
+metadata:
+  name: audience-render
+spec:
+  selector:
+    matchLabels:
+      app: audience
+      component: audience-render
+  template:
+    metadata:
+      labels:
+        app: audience
+        component: audience-render
+    spec:
+      containers:
+        - name:  audience-render
+          image: "{{ printf "%s:%s" .Values.render.Image.Name .Values.render.Image.Tag}}"
+          readinessProbe:
+            httpGet:
+              path: /probe
+              port: 8765
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          ports:
+            - containerPort: 8765
+              name: http
