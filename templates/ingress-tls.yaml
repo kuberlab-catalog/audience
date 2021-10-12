@@ -21,24 +21,28 @@ spec:
     http:
       paths:
         - path: /swagger
+          pathType: Prefix
           backend:
             service:
               name: audience-api
               port:
                 number: 8088
         - path: /api
+          pathType: Prefix
           backend:
             service:
               name: audience-api
               port:
                 number: 8088
         - path: /images
+          pathType: Prefix
           backend:
             service:
               name: audience-api
               port:
                 number: 8088
         - path: /
+          pathType: Prefix
           backend:
             service:
               name: audience-ui
