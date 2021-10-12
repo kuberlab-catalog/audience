@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: audience-tls
@@ -22,18 +22,26 @@ spec:
       paths:
         - path: /swagger
           backend:
-            serviceName: audience-api
-            servicePort: 8088
+            service:
+              name: audience-api
+              port:
+                number: 8088
         - path: /api
           backend:
-            serviceName: audience-api
-            servicePort: 8088
+            service:
+              name: audience-api
+              port:
+                number: 8088
         - path: /images
           backend:
-            serviceName: audience-api
-            servicePort: 8088
+            service:
+              name: audience-api
+              port:
+                number: 8088
         - path: /
           backend:
-            serviceName: audience-ui
-            servicePort: 80
+            service:
+              name: audience-ui
+              port:
+                number: 80
     {{- end }}
